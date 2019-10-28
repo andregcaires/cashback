@@ -1,0 +1,135 @@
+{
+	"info": {
+		"_postman_id": "0754fe5e-b30f-4090-a781-9bf0bee61b74",
+		"name": "Spotify",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Spotify - Token",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "client_id",
+							"value": "04d5e7cf239b4801a7e21d1d91b59efa"
+						},
+						{
+							"key": "response_type",
+							"value": "code"
+						},
+						{
+							"key": "redirect_uri",
+							"value": "http://localhost:5000/callback/"
+						},
+						{
+							"key": "client_secret",
+							"value": "a3b53053cae6419692bfcca33adfddc3",
+							"type": "text"
+						},
+						{
+							"key": "grant_type",
+							"value": "client_credentials",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://accounts.spotify.com/api/token?",
+					"protocol": "https",
+					"host": [
+						"accounts",
+						"spotify",
+						"com"
+					],
+					"path": [
+						"api",
+						"token"
+					],
+					"query": [
+						{
+							"key": "client_id",
+							"value": "04d5e7cf239b4801a7e21d1d91b59efa",
+							"disabled": true
+						},
+						{
+							"key": "response_type",
+							"value": "code",
+							"disabled": true
+						},
+						{
+							"key": "redirect_uri",
+							"value": "http://localhost:5000/callback/",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "ClientSecret",
+						"value": "a3b53053cae6419692bfcca33adfddc3",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "ClientId",
+						"value": "04d5e7cf239b4801a7e21d1d91b59efa",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer BQBR7U71L7K37VfoE0UE2puPj1qoAJ0I3viV536swpNzX_OAy94ozwByTmzB50nQ8ptQTvZ_cHsBwgMLJl8",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://api.spotify.com/v1/search?q=rock&type=album&limit=50",
+					"protocol": "https",
+					"host": [
+						"api",
+						"spotify",
+						"com"
+					],
+					"path": [
+						"v1",
+						"search"
+					],
+					"query": [
+						{
+							"key": "q",
+							"value": "rock"
+						},
+						{
+							"key": "type",
+							"value": "album"
+						},
+						{
+							"key": "limit",
+							"value": "50"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
