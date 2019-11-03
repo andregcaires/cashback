@@ -1,4 +1,4 @@
-namespace SpotifyService.Token
+namespace Cashback.Spotify.Token
 {
     public class SpotifyTokenResponse
     {
