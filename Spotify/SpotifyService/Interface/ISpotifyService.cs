@@ -24,6 +24,6 @@ namespace Cashback.Spotify.Interface
         /// </summary>
         /// <param name="access_token">Token de acesso obtido em GetToken</param>
         /// <returns>Lista de respostas obtidas da chamada convertidas em objetos SpotifyAlbumResponse</returns>
-        IEnumerable<SpotifyAlbumResponse> GetAlbums(string access_token);
+        List<SpotifyAlbumResponse> GetAlbums(string access_token);
     }
 }

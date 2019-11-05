@@ -1,7 +1,5 @@
 using Cashback.Spotify.Interface;
 using Cashback.Spotify.Model;
-using Cashback.Spotify.Token;
-using Microsoft.Extensions.Configuration;
 using System.Collections.Generic;
 
 namespace Cashback.Spotify
@@ -12,12 +10,10 @@ namespace Cashback.Spotify
         
         private ISpotifyTokenRequest tokenRequest;
         private ISpotifyService service;
-        private IConfiguration _config;
 
-        public SpotifyFacade(ISpotifyFactory factory, IConfiguration config)
+        public SpotifyFacade(ISpotifyFactory factory)
         {
             _factory = factory;
-            _config = config;
         }
 
         public void PrepareEnvironment ()
@@ -31,12 +27,11 @@ namespace Cashback.Spotify
             // recupera o token através da API do Spotify
             string access_token = service.GetToken(tokenRequest).Result;
 
-            List<SpotifyAlbumResponse> list = new List<SpotifyAlbumResponse>();
-            list.AddRange(service.GetAlbums(access_token));
-
-            System.Console.WriteLine(access_token);
+            // obtém lista de álbuns da API do Spotify
+            List<SpotifyAlbumResponse> list = service.GetAlbums(access_token);
 
             // incluir dados no BD
+            throw new System.Exception("TODO - incluir dados no BD");
         }
     }
 }

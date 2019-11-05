@@ -16,10 +16,7 @@ namespace Utilities
         /// <typeparam name="T">Tipo genérico</typeparam>
         /// <param name="reference">Objeto tipado</param>
         /// <returns>String em formato JSON</returns>
-        public static string ToJson<T>(this T reference)
-        {
-            return JsonConvert.SerializeObject(reference);
-        }
+        public static string ToJson<T>(this T reference) => JsonConvert.SerializeObject(reference);
 
         /// <summary>
         /// Deserializa JSON para objeto tipado
@@ -27,10 +24,8 @@ namespace Utilities
         /// <typeparam name="T">Tipo genérico</typeparam>
         /// <param name="json">String em formato JSON</param>
         /// <returns>Objeto de tipo T com os valores do JSON</returns>
-        public static T JsonToObject<T>(this string json)
-        {
-            return JsonConvert.DeserializeObject<T>(json);
-        }
+        public static T JsonToObject<T>(this string json) => JsonConvert.DeserializeObject<T>(json);
+        
 
         /// <summary>
         /// Converte objeto de um tipo em outro. É necessário que os nomes das propriedades sejam as mesmas

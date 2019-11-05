@@ -12,14 +12,8 @@ namespace Cashback.Spotify.Factory
             _service = service;
         }
 
-        public ISpotifyTokenRequest GetSpotifyTokenRequest()
-        {
-            return this._tokenRequest;
-        }
+        public ISpotifyTokenRequest GetSpotifyTokenRequest() => this._tokenRequest;
 
-        public ISpotifyService GetSpotifyService()
-        {
-            return this._service;
-        }
+        public ISpotifyService GetSpotifyService() => this._service;
     }
 }

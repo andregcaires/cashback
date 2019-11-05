@@ -4,10 +4,12 @@ using System.Text;
 
 namespace Cashback.Domain.Model
 {
-    public class Album : Entity
+    public class CashbackByDayOfWeek
     {
-        public string Name { get; set; }
-        public decimal Price { get; set; }
+        public DayOfWeek DayOfWeek { get; set; }
+
         public MusicStyle MusicStyle { get; set; }
+
+        public int Percentage { get; set; }
     }
 }

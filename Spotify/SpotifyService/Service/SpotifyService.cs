@@ -23,7 +23,7 @@ namespace Cashback.Spotify.Service
             _config = config;
         }
 
-        public IEnumerable<SpotifyAlbumResponse> GetAlbums(string access_token)
+        public List<SpotifyAlbumResponse> GetAlbums(string access_token)
         {
             StringBuilder sb;
             List<SpotifyAlbumResponse> list = new List<SpotifyAlbumResponse>();
@@ -36,9 +36,7 @@ namespace Cashback.Spotify.Service
                     foreach (var styleName in Enum.GetValues(typeof(AlbumStyles)))
                     {
                         sb = new StringBuilder(_config["Spotify:SearchURI"]);
-                        sb.Append($"?q={styleName}");
-                        sb.Append("&type=album");
-                        sb.Append("&limit=50");
+                        sb.Append($"?q={styleName}&type=album&limit=50");
 
                         var request = http.GetAsync(sb.ToString()).Result;
                         var response = request.Content.ReadAsStringAsync();
