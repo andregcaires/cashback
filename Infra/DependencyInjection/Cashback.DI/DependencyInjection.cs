@@ -23,6 +23,7 @@ namespace Cashback.DI
             services.AddSingleton<ISpotifyFactory, SpotifyFactory>();
             services.AddSingleton<ISpotifyService, SpotifyService>();
             services.AddSingleton<ISpotifyTokenRequest, SpotifyTokenRequest>();
+
         }
     }
 }

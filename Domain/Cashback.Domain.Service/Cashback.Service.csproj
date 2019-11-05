@@ -1,0 +1,12 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Cashback.Context\Cashback.Context.csproj" />
+    <ProjectReference Include="..\Cashback.Domain\Cashback.Domain.csproj" />
+  </ItemGroup>
+
+</Project>

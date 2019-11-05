@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Cashback.Domain.Model
 {
-    public class CashbackByDayOfWeek
+    public class CashbackByDayOfWeek : Entity
     {
         public DayOfWeek DayOfWeek { get; set; }
 
