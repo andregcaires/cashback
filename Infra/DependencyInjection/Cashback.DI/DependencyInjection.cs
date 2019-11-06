@@ -1,9 +1,18 @@
-﻿using Cashback.Spotify;
+﻿using Cashback.Context;
+using Cashback.Context.Commom;
+using Cashback.Context.Interface;
+using Cashback.Context.Repository;
+using Cashback.DI.Interface;
+using Cashback.Service.Application;
+using Cashback.Service.Interface;
+using Cashback.Spotify;
 using Cashback.Spotify.Factory;
 using Cashback.Spotify.Interface;
 using Cashback.Spotify.Service;
 using Cashback.Spotify.Token;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 
 namespace Cashback.DI
 {
@@ -18,11 +27,27 @@ namespace Cashback.DI
         /// <param name="services">Coleção de serviços configurada na classe Startup</param>
         public static void RegisterServices(IServiceCollection services)
         {
+            // Context
+            services.AddDbContext<DatabaseContext>(options => options.UseSqlite("TESTE.db"), 
+                ServiceLifetime.Scoped);
+
+            // Bootstrap
+            services.AddScoped<IBootstrapFacade, BootstrapFacade>();
+
             // Spotify
-            services.AddSingleton<ISpotifyFacade, SpotifyFacade>();
-            services.AddSingleton<ISpotifyFactory, SpotifyFactory>();
-            services.AddSingleton<ISpotifyService, SpotifyService>();
-            services.AddSingleton<ISpotifyTokenRequest, SpotifyTokenRequest>();
+            services.AddScoped<ISpotifyTokenRequest, SpotifyTokenRequest>();
+            services.AddScoped<ISpotifyFactory, SpotifyFactory>();
+            services.AddScoped<ISpotifyService, SpotifyService>();
+
+            // Repository
+            services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+            services.AddScoped<IAlbumRepository, AlbumRepository>();
+            services.AddScoped<ICashbackRepository, CashbackRepository>();
+
+            // Service
+            services.AddScoped<IAlbumService, AlbumService>();
+            services.AddScoped<ICashbackService, CashbackService>();
+
 
         }
     }

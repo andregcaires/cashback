@@ -26,5 +26,11 @@ namespace Cashback.Spotify.Interface
         /// <param name="access_token">Token de acesso obtido em GetToken</param>
         /// <returns>Lista de respostas obtidas da chamada convertidas em objetos SpotifyAlbumResponse</returns>
         List<Album> GetAlbums(string access_token);
+
+        /// <summary>
+        /// Insere lista de álbuns obtidas da API no banco de dados
+        /// </summary>
+        /// <param name="albumList">Lista de álbuns</param>
+        void AddAlbumsToDatabase(List<Album> albumList);
     }
 }

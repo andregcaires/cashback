@@ -15,7 +15,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Domain\Cashback.Domain.Service\Cashback.Service.csproj" />
-    <ProjectReference Include="..\..\Domain\Cashback.Domain\Cashback.Domain.csproj" />
     <ProjectReference Include="..\..\Infra\Utilities\Utilities.csproj" />
   </ItemGroup>
 

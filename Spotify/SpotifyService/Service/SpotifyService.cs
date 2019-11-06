@@ -12,6 +12,8 @@ using Cashback.Domain.Enums;
 using System;
 using Cashback.Domain.Model;
 using System.Linq;
+using Cashback.Service.Interface;
+using Microsoft.Extensions.Logging;
 
 namespace Cashback.Spotify.Service
 {
@@ -20,11 +22,13 @@ namespace Cashback.Spotify.Service
         private IConfiguration _config;
         private SpotifyTokenResponse resp;
         private IAlbumService _albumService;
+        private ILogger _log;
 
-        public SpotifyService(IConfiguration config, IAlbumService albumService)
+        public SpotifyService(IConfiguration config, IAlbumService albumService, ILogger<SpotifyService> log)
         {
             _config = config;
             _albumService = albumService;
+            _log = log;
         }
 
         public List<Album> GetAlbums(string access_token)
@@ -106,7 +110,10 @@ namespace Cashback.Spotify.Service
 
         public void AddAlbumsToDatabase(List<Album> albumList)
         {
-            //_albumService
+            foreach(Album item in albumList)
+            {
+                _albumService.Add(item);
+            }
         }
     }
 }

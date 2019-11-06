@@ -7,12 +7,10 @@ using System.Text;
 
 namespace Cashback.Context.Repository
 {
-    public class AlbumRepository : Repository<Album>, IAlbumRepository
+    public class CashbackRepository : Repository<CashbackByDayOfWeek>, ICashbackRepository
     {
-        public AlbumRepository(DatabaseContext context) : base(context)
+        public CashbackRepository(DatabaseContext context) : base(context)
         {
         }
-
-
     }
 }

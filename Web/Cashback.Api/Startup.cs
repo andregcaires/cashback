@@ -22,6 +22,8 @@ namespace Cashback.Api
         {
             services.AddControllers();
 
+            services.AddLogging();
+
             // Chama DLL de DI para registrar serviços sem dependência do projeto Web
             DependencyInjection.RegisterServices(services);
         }

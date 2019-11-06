@@ -1,7 +1,11 @@
 ﻿using Cashback.Context;
 using Cashback.Context.Interface;
+using Cashback.Context.Repository;
+using Cashback.Domain.Model;
+using Cashback.Service.Application;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
 using Xunit;
 
 namespace Cashback.Service.Tests.Application
@@ -23,6 +27,17 @@ namespace Cashback.Service.Tests.Application
                 using (var context = new DatabaseContext(options))
                 {
                     context.Database.EnsureCreated();
+                }
+
+                using (var context = new DatabaseContext(options))
+                {
+                    var repository = new AlbumRepository(context);
+                    repository.Insert(new Album() { Name="Teste", MusicStyle="mpb" });
+                }
+
+                using (var context = new DatabaseContext(options))
+                {
+                    Assert.Equal(1, context.Albums.Count());
                 }
             }
             finally

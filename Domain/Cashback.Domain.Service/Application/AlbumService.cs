@@ -13,9 +13,17 @@ namespace Cashback.Service.Application
 
         public AlbumService(IAlbumRepository repo) => _repo = repo;
 
-        public void Add()
+
+        public void Add(Album item)
         {
-            
+            _repo.Insert(item);
         }
+
+        public List<Album> SelectAll()
+        {
+            return _repo.GetAll();
+        }
+
+
     }
 }
