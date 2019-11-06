@@ -1,4 +1,5 @@
 ﻿using Cashback.Context.Interface;
+using Cashback.Domain.Model;
 using Cashback.Service.Interface;
 using System;
 using System.Collections.Generic;

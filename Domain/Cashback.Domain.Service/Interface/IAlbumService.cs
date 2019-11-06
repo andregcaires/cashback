@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Cashback.Domain.Model;
+using System;
 using System.Collections.Generic;
 using System.Text;
 

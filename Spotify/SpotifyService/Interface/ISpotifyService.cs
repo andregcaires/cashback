@@ -1,4 +1,5 @@
-﻿using Cashback.Spotify.Model;
+﻿using Cashback.Domain.Model;
+using Cashback.Spotify.Model;
 using Cashback.Spotify.Token;
 using System;
 using System.Collections.Generic;
@@ -24,6 +25,6 @@ namespace Cashback.Spotify.Interface
         /// </summary>
         /// <param name="access_token">Token de acesso obtido em GetToken</param>
         /// <returns>Lista de respostas obtidas da chamada convertidas em objetos SpotifyAlbumResponse</returns>
-        List<SpotifyAlbumResponse> GetAlbums(string access_token);
+        List<Album> GetAlbums(string access_token);
     }
 }

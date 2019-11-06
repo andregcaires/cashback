@@ -8,8 +8,10 @@ using System.Text;
 using System.Threading.Tasks;
 using Utilities;
 using System.Net.Http.Headers;
-using Cashback.Spotify.Enums;
+using Cashback.Domain.Enums;
 using System;
+using Cashback.Domain.Model;
+using System.Linq;
 
 namespace Cashback.Spotify.Service
 {
@@ -17,21 +19,24 @@ namespace Cashback.Spotify.Service
     {
         private IConfiguration _config;
         private SpotifyTokenResponse resp;
+        private IAlbumService _albumService;
 
-        public SpotifyService(IConfiguration config)
+        public SpotifyService(IConfiguration config, IAlbumService albumService)
         {
             _config = config;
+            _albumService = albumService;
         }
 
-        public List<SpotifyAlbumResponse> GetAlbums(string access_token)
+        public List<Album> GetAlbums(string access_token)
         {
             StringBuilder sb;
-            List<SpotifyAlbumResponse> list = new List<SpotifyAlbumResponse>();
+            List<Album> list = new List<Album>();
             try
             {
                 using (var http = new HttpClient())
                 {
-                    http.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", access_token);
+                    http.DefaultRequestHeaders
+                        .Authorization = new AuthenticationHeaderValue("Bearer", access_token);
 
                     foreach (var styleName in Enum.GetValues(typeof(AlbumStyles)))
                     {
@@ -43,7 +48,14 @@ namespace Cashback.Spotify.Service
 
                         if (response.IsCompleted)
                         {
-                            list.Add(response.Result.JsonToObject<SpotifyAlbumResponse>());
+                            SpotifyAlbumResponse albumResponse = response.Result
+                                .JsonToObject<SpotifyAlbumResponse>();
+
+                            list.AddRange(Album.New(albumResponse
+                                .albums.items
+                                .Select(x => x.Name)
+                                .ToList<string>(), 
+                                styleName.ToString()));
                         }
                     }
                     return list;
@@ -90,6 +102,11 @@ namespace Cashback.Spotify.Service
                 throw;
             }
 
+        }
+
+        public void AddAlbumsToDatabase(List<Album> albumList)
+        {
+            //_albumService
         }
     }
 }

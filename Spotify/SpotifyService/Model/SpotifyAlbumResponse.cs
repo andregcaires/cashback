@@ -1,4 +1,6 @@
-﻿namespace Cashback.Spotify.Model
+﻿using Newtonsoft.Json;
+
+namespace Cashback.Spotify.Model
 {
     /// <summary>
     /// Representa a resposta JSON de uma chamada à API de buscas do Spotify
@@ -27,7 +29,8 @@
             public string href { get; set; }
             public string id { get; set; }
             public Image[] images { get; set; }
-            public string name { get; set; }
+            [JsonProperty("name")]
+            public string Name { get; set; }
             public string release_date { get; set; }
             public string release_date_precision { get; set; }
             public int total_tracks { get; set; }

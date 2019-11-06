@@ -8,7 +8,7 @@ namespace Cashback.Domain.Model
     {
         public DayOfWeek DayOfWeek { get; set; }
 
-        public MusicStyle MusicStyle { get; set; }
+        public string MusicStyle { get; set; }
 
         public int Percentage { get; set; }
     }

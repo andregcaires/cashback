@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Cashback.Spotify.Enums
+namespace Cashback.Domain.Enums
 {
     public enum  AlbumStyles
     {
