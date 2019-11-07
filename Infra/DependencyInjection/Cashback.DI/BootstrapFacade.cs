@@ -17,11 +17,13 @@ namespace Cashback.DI
         private ISpotifyService spotifyService;
 
         private ICashbackService _cashbackService;
+        private IAlbumService _albumService;
 
-        public BootstrapFacade(ISpotifyFactory factory, ICashbackService service)
+        public BootstrapFacade(ISpotifyFactory factory, ICashbackService cashbackService, IAlbumService albumService)
         {
             _factory = factory;
-            _cashbackService = service;
+            _cashbackService = cashbackService;
+            _albumService = albumService;
         }
 
         public void PrepareEnvironment()
@@ -41,8 +43,8 @@ namespace Cashback.DI
             // obtém lista de álbuns da API do Spotify
             List<Album> list = spotifyService.GetAlbums(access_token);
 
-            // incluir dados no BD
-            spotifyService.AddAlbumsToDatabase(list);
+            // insere dados no BD
+            _albumService.AddAlbumsToDatabase(list);
 
         }
     }

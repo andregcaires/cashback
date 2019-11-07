@@ -9,7 +9,7 @@ namespace Cashback.Service.Contract
     /// Fornece métodos comuns a serem aplicados em classes de serviços
     /// </summary>
     /// <typeparam name="T">Classe de entidade</typeparam>
-    public abstract IServiceContract<T> where T : Entity
+    public interface IServiceContract<T> where T : Entity
     {
         /// <summary>
         /// Insere novo item no banco de dados

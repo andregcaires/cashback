@@ -28,7 +28,8 @@ namespace Cashback.DI
         public static void RegisterServices(IServiceCollection services)
         {
             // Context
-            services.AddDbContext<DatabaseContext>(options => options.UseSqlite("TESTE.db"), 
+            services.AddDbContext<DatabaseContext>(options => options
+                .UseSqlite("Data Source=c:\\Cashback.db;"), 
                 ServiceLifetime.Scoped);
 
             // Bootstrap

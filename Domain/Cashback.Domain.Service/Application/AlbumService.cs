@@ -24,6 +24,12 @@ namespace Cashback.Service.Application
             return _repo.GetAll();
         }
 
-
+        public void AddAlbumsToDatabase(List<Album> albumList)
+        {
+            foreach (Album item in albumList)
+            {
+                _repo.Insert(item);
+            }
+        }
     }
 }

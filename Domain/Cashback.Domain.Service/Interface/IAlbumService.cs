@@ -12,5 +12,10 @@ namespace Cashback.Service.Interface
     /// </summary>
     public interface IAlbumService : IServiceContract<Album>
     {
+        /// <summary>
+        /// Insere lista de álbuns obtidas da API no banco de dados
+        /// </summary>
+        /// <param name="albumList">Lista de álbuns</param>
+        void AddAlbumsToDatabase(List<Album> albumList);
     }
 }

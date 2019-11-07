@@ -14,6 +14,7 @@ namespace Cashback.Context
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new AlbumMapping());
+            modelBuilder.ApplyConfiguration(new CashbackMapping());
 
             base.OnModelCreating(modelBuilder);
         }
