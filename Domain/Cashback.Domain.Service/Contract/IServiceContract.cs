@@ -22,5 +22,13 @@ namespace Cashback.Service.Contract
         /// </summary>
         /// <returns>Lista contendo entidades do tipo T</returns>
         List<T> SelectAll();
+
+        /// <summary>
+        /// Recupera itens do banco de forma paginada
+        /// </summary>
+        /// <param name="skip">Número da página</param>
+        /// <param name="pageSize">Tamanho da página</param>
+        /// <returns></returns>
+        IList<T> GetPaged(int skip, int pageSize);
     }
 }

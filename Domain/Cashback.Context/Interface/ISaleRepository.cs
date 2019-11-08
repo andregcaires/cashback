@@ -5,8 +5,7 @@ using System.Text;
 
 namespace Cashback.Context.Interface
 {
-    public interface ICashbackRepository : IRepository<CashbackByDayOfWeek>
+    public interface ISaleRepository : IRepository<Sale>
     {
-        CashbackByDayOfWeek Get(string musicStyle);
     }
 }

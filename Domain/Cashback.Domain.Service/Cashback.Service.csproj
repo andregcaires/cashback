@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Infra\Utilities\Utilities.csproj" />
     <ProjectReference Include="..\Cashback.Context\Cashback.Context.csproj" />
     <ProjectReference Include="..\Cashback.Domain\Cashback.Domain.csproj" />
   </ItemGroup>

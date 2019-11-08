@@ -9,14 +9,7 @@ namespace Cashback.Domain.Model
         public string Name { get; set; }
         public string MusicStyle { get; set; }
 
-        private decimal price;
-        public decimal Price { get {
-                return this.price;
-            }
-            set {
-                this.price = GeneratePrice();
-            }
-        }
+        public decimal Price { get; set; }
 
         public static decimal GeneratePrice()
         {
@@ -24,7 +17,17 @@ namespace Cashback.Domain.Model
             return decimal.Parse($"{rand.Next(1, 50)},{rand.Next(00, 99)}");
         }
 
-        public static IEnumerable<Album> New(List<string> names, string musicStyle)
+        public static Album New(string name, string musicStyle)
+        {
+            return new Album()
+            {
+                Name = name,
+                MusicStyle = musicStyle,
+                Price = GeneratePrice()
+            };
+        }
+
+        public static IEnumerable<Album> NewList(List<string> names, string musicStyle)
         {
             foreach(string name in names)
             {
@@ -35,7 +38,6 @@ namespace Cashback.Domain.Model
                     Price = GeneratePrice()
                 };
             }
-
         }
 
     }

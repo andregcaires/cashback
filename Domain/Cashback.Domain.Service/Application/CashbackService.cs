@@ -5,6 +5,7 @@ using Cashback.Service.Interface;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Utilities;
 
 namespace Cashback.Service.Application
 {
@@ -23,7 +24,7 @@ namespace Cashback.Service.Application
 
         public List<CashbackByDayOfWeek> SelectAll()
         {
-            return _repo.GetAll();
+            return _repo.GetAllAsList();
         }
 
         public void InitializeCashbackDatabase()
@@ -36,6 +37,11 @@ namespace Cashback.Service.Application
                 .ForEach(c => _repo.Insert(c));
         }
 
-
+        public IList<CashbackByDayOfWeek> GetPaged(int skip, int pageSize)
+        {
+            return _repo.GetAllAsQueryable()
+                .GetPaged(skip, pageSize)
+                .Results;
+        }
     }
 }

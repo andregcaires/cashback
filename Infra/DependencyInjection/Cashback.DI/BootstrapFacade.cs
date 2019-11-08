@@ -1,12 +1,8 @@
-﻿using Cashback.Context.Interface;
-using Cashback.DI.Interface;
+﻿using Cashback.DI.Interface;
 using Cashback.Domain.Model;
 using Cashback.Service.Interface;
 using Cashback.Spotify.Interface;
-using Microsoft.Extensions.Logging;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Cashback.DI
 {

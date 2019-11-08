@@ -11,5 +11,6 @@ namespace Cashback.Domain.Model
         public int Quantity { get; set; }
         public CashbackByDayOfWeek Cashback { get; set; }
         public decimal Value { get; set; }
+        public decimal CashbackValue { get; set; }
     }
 }

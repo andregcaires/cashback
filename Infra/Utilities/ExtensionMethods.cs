@@ -1,7 +1,8 @@
 using Newtonsoft.Json;
 using System;
+using System.Linq;
 using System.Reflection;
-
+using Utilities.Pagination;
 
 namespace Utilities
 {
@@ -50,5 +51,32 @@ namespace Utilities
             }
             return result;
         }
+
+        /// <summary>
+        /// Gera resultado paginado de uma query do Entity Framework
+        /// Referência: https://gunnarpeipman.com/ef-core-paging/
+        /// </summary>
+        /// <typeparam name="T">Classe de Entidade</typeparam>
+        /// <param name="query">Objeto IQueryable do EF</param>
+        /// <param name="page">Número da página</param>
+        /// <param name="pageSize">Tamanho da página</param>
+        /// <returns>Objeto do tipo PagedResult paginado</returns>
+        public static PagedResult<T> GetPaged<T>(this IQueryable<T> query,
+                                                 int page, int pageSize) where T : class
+        {
+            var result = new PagedResult<T>();
+            result.CurrentPage = page;
+            result.PageSize = pageSize;
+            result.RowCount = query.Count();
+
+            var pageCount = (double)result.RowCount / pageSize;
+            result.PageCount = (int)Math.Ceiling(pageCount);
+
+            var skip = (page - 1) * pageSize;
+            result.Results = query.Skip(skip).Take(pageSize).ToList();
+
+            return result;
+        }
+
     }
 }

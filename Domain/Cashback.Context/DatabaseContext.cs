@@ -10,6 +10,7 @@ namespace Cashback.Context
     public class DatabaseContext : DbContext
     {
         public DbSet<Album> Albums { get; set; }
+        public DbSet<CashbackByDayOfWeek> Cashbacks { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

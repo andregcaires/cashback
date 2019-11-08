@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Cashback.Context.Interface
@@ -14,7 +15,13 @@ namespace Cashback.Context.Interface
         /// Recupera todos os itens
         /// </summary>
         /// <returns>Lista de entidade do tipo T</returns>
-        public List<T> GetAll();
+        public List<T> GetAllAsList();
+
+        /// <summary>
+        /// Recupera todos os itens
+        /// </summary>
+        /// <returns>IQueryable de entidade do tipo T</returns>
+        public IQueryable<T> GetAllAsQueryable();
 
         /// <summary>
         /// Recupera item do banco pelo seu ID

@@ -1,12 +1,9 @@
-using Cashback.Context;
 using Cashback.DI;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 
 namespace Cashback.Api
 {
@@ -25,11 +22,6 @@ namespace Cashback.Api
             services.AddControllers();
 
             services.AddLogging();
-
-            //// Context
-            //services.AddDbContext<DatabaseContext>(options => options
-            //    .UseSqlite("Data Source=c:\\Cashback.db;"),
-            //    ServiceLifetime.Scoped);
 
             // Chama DLL de DI para registrar serviços sem dependência do projeto Web
             DependencyInjection.RegisterServices(services);

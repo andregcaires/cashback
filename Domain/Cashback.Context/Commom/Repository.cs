@@ -11,7 +11,7 @@ namespace Cashback.Context.Commom
     public class Repository<T> : IRepository<T> where T : Entity
     {
         private DatabaseContext _context;
-        private DbSet<T> _dBSet;
+        protected DbSet<T> _dBSet;
         public Repository(DatabaseContext context)
         {
             _context = context;
@@ -25,9 +25,14 @@ namespace Cashback.Context.Commom
             _context.SaveChanges();
         }
 
-        public List<T> GetAll()
+        public List<T> GetAllAsList()
         {
             return _dBSet.ToList();
+        }
+
+        public IQueryable<T> GetAllAsQueryable()
+        {
+            return _dBSet;
         }
 
         public T GetById(int id)

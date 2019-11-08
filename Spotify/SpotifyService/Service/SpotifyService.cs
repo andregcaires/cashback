@@ -49,7 +49,7 @@ namespace Cashback.Spotify.Service
                             SpotifyAlbumResponse albumResponse = response.Result
                                 .JsonToObject<SpotifyAlbumResponse>();
 
-                            list.AddRange(Album.New(albumResponse
+                            list.AddRange(Album.NewList(albumResponse
                                 .albums.items
                                 .Select(x => x.Name)
                                 .ToList<string>(), 
@@ -83,7 +83,7 @@ namespace Cashback.Spotify.Service
                     FormUrlEncodedContent content = new FormUrlEncodedContent(dict);
 
                     HttpResponseMessage request = await http.PostAsync(_config["Spotify:TokenURI"], content);
-                    var response = request.Content.ReadAsStringAsync();
+                    Task<string> response = request.Content.ReadAsStringAsync();
 
                     if (response.IsCompleted)
                     {

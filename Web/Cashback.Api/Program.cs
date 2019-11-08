@@ -1,12 +1,6 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Cashback.Spotify.Interface;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.DependencyInjection;
 using Cashback.DI.Interface;
 
@@ -26,7 +20,6 @@ namespace Cashback.Api
                     var facade = (IBootstrapFacade)scope.ServiceProvider.GetService(typeof(IBootstrapFacade));
                     facade.PrepareEnvironment();
                 }
-
 
                 host.Run();
             } catch(Exception e)
