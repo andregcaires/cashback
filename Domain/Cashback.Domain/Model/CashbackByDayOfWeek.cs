@@ -6,7 +6,7 @@ namespace Cashback.Domain.Model
 {
     public class CashbackByDayOfWeek : Entity
     {
-        public DayOfWeek DayOfWeek { get; set; }
+        public string DayOfWeek { get; set; }
 
         public string MusicStyle { get; set; }
 

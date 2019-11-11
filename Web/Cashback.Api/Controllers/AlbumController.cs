@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Cashback.Api.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class AlbumController : ControllerBase
     {
@@ -19,36 +19,34 @@ namespace Cashback.Api.Controllers
             _service = service;
         }
 
-        // GET: api/Album
         [HttpGet]
-        public JsonResult Get()
+        [Route("~/[controller]")]
+        public JsonResult Get([FromQuery]string musicStyle = "",
+                            [FromQuery] int page = 0,
+                            [FromQuery] int pageSize = 10)
         {
-            return new JsonResult(_service.SelectAll());
+            try
+            {
+                return new JsonResult(_service.GetPaged(page, pageSize, musicStyle));
+            } catch (Exception e)
+            {
+                return new JsonResult(e.Message);
+            }
         }
 
-        // GET: api/Album/5
-        [HttpGet("{id}", Name = "Get")]
-        public string Get(int id)
+        [HttpGet]
+        [Route("~/[controller]/{id:int}")]
+        public JsonResult GetById([FromRoute]int id)
         {
-            return "value";
+            try
+            {
+                return new JsonResult(_service.FindById(id));
+            }
+            catch (Exception e)
+            {
+                return new JsonResult(e.Message);
+            }
         }
 
-        // POST: api/Album
-        [HttpPost]
-        public void Post([FromBody] string value)
-        {
-        }
-
-        // PUT: api/Album/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE: api/ApiWithActions/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
     }
 }

@@ -4,7 +4,7 @@ using Cashback.Domain.Model;
 using Cashback.Service.Interface;
 using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Linq;
 using Utilities;
 
 namespace Cashback.Service.Application
@@ -27,21 +27,24 @@ namespace Cashback.Service.Application
             return _repo.GetAllAsList();
         }
 
-        public void InitializeCashbackDatabase()
+        public IEnumerable<CashbackByDayOfWeek> GetCashbacksForToday()
         {
-            new List<CashbackByDayOfWeek>()
-                .AddRock()
-                .AddPop()
-                .AddMpb()
-                .AddClassic()
-                .ForEach(c => _repo.Insert(c));
+            return _repo.GetAllAsList()
+                .Where(x => x.DayOfWeek == DateTime.Now.DayOfWeek.ToString().ToLower());
         }
 
-        public IList<CashbackByDayOfWeek> GetPaged(int skip, int pageSize)
+        public void InitializeCashbackDatabase()
         {
-            return _repo.GetAllAsQueryable()
-                .GetPaged(skip, pageSize)
-                .Results;
+            if (_repo.GetAllAsList().Count == 0)
+            {
+                new List<CashbackByDayOfWeek>()
+                    .AddRock()
+                    .AddPop()
+                    .AddMpb()
+                    .AddClassic()
+                    .ForEach(c => _repo.Insert(c));
+            }
+
         }
     }
 }

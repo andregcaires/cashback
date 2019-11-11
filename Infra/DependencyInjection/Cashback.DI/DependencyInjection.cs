@@ -29,7 +29,7 @@ namespace Cashback.DI
         {
             // Context
             services.AddDbContext<DatabaseContext>(options => options
-                .UseSqlite("Data Source=c:\\Cashback.db;"), 
+                .UseSqlServer("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Database\\Cashback.mdf;Integrated Security=True;Connect Timeout=30"), 
                 ServiceLifetime.Scoped);
 
             // Bootstrap
@@ -44,10 +44,12 @@ namespace Cashback.DI
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddScoped<IAlbumRepository, AlbumRepository>();
             services.AddScoped<ICashbackRepository, CashbackRepository>();
+            services.AddScoped<ISaleRepository, SaleRepository>();
 
             // Service
             services.AddScoped<IAlbumService, AlbumService>();
             services.AddScoped<ICashbackService, CashbackService>();
+            services.AddScoped<ISaleService, SaleService>();
 
 
         }

@@ -2,7 +2,7 @@
 
 namespace Cashback.Context.Migrations
 {
-    public partial class FirstMigration : Migration
+    public partial class NewSqlConnection : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -11,7 +11,7 @@ namespace Cashback.Context.Migrations
                 columns: table => new
                 {
                     ID = table.Column<int>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(nullable: true),
                     MusicStyle = table.Column<string>(nullable: true),
                     Price = table.Column<decimal>(nullable: false)
@@ -22,18 +22,18 @@ namespace Cashback.Context.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "CashbackByDayOfWeek",
+                name: "Cashbacks",
                 columns: table => new
                 {
                     ID = table.Column<int>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     DayOfWeek = table.Column<int>(nullable: false),
                     MusicStyle = table.Column<string>(nullable: true),
                     Percentage = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CashbackByDayOfWeek", x => x.ID);
+                    table.PrimaryKey("PK_Cashbacks", x => x.ID);
                 });
         }
 
@@ -43,7 +43,7 @@ namespace Cashback.Context.Migrations
                 name: "Albums");
 
             migrationBuilder.DropTable(
-                name: "CashbackByDayOfWeek");
+                name: "Cashbacks");
         }
     }
 }

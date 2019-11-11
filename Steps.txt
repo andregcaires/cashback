@@ -2,6 +2,9 @@ C:\Dev\cashback
 
 dotnet tool install --global dotnet-ef
 
-dotnet-ef --startup-project ../../Web/Cashback.Api/Cashback.Api.csproj migration add XXX
+dotnet-ef --startup-project ../../Web/Cashback.Api/Cashback.Api.csproj migrations add XXX
 
 dotnet-ef database update
+
+
+Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Database\Cashback.mdf;Integrated Security=True;Connect Timeout=30

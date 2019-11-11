@@ -3,7 +3,8 @@ using Cashback.Domain.Model;
 using Cashback.Service.Interface;
 using Utilities;
 using System.Collections.Generic;
-using System.Text;
+using System.Linq;
+using System;
 
 namespace Cashback.Service.Application
 {
@@ -23,19 +24,28 @@ namespace Cashback.Service.Application
             return _repo.GetAllAsList();
         }
 
-        public IList<Album> GetPaged(int skip, int pageSize)
+        public IList<Album> GetPaged(int skip, int pageSize, string musicStyle = "")
         {
-            return _repo.GetAllAsQueryable()
+            var condition = !string.IsNullOrWhiteSpace(musicStyle)
+                    ? new Func<Album, bool>(x => x.MusicStyle == musicStyle)
+                    : new Func<Album, bool>(x => true);
+
+            return _repo
+                .GetAllAsQueryable()
+                .Where(condition)
                 .GetPaged(skip, pageSize)
                 .Results;
         }
 
         public void AddAlbumsToDatabase(List<Album> albumList)
         {
-            foreach (Album item in albumList)
-            {
-                _repo.Insert(item);
-            }
+            if (_repo.GetAllAsList().Count == 0)
+                albumList.ForEach(x => _repo.Insert(x));
+        }
+
+        public Album FindById(int id)
+        {
+            return _repo.GetById(id);
         }
     }
 }

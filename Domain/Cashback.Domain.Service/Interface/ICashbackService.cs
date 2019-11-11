@@ -15,5 +15,11 @@ namespace Cashback.Service.Interface
         /// Inicializa dados na tabela de Cashback
         /// </summary>
         public void InitializeCashbackDatabase();
+
+        /// <summary>
+        /// Busca cashbacks baseado no dia atual
+        /// </summary>
+        /// <returns>IEnumerable de cashbacks</returns>
+        IEnumerable<CashbackByDayOfWeek> GetCashbacksForToday();
     }
 }

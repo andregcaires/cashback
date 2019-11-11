@@ -1,6 +1,7 @@
 ﻿using Cashback.Context.Commom;
 using Cashback.Context.Interface;
 using Cashback.Domain.Model;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,6 +20,11 @@ namespace Cashback.Context.Repository
             return base._dBSet
                 .Where(x => x.MusicStyle.ToLower() == musicStyle.ToLower())
                 .FirstOrDefault();
+        }
+        public void Migrate()
+        {
+            _context.Database.Migrate();
+            _context.Database.EnsureCreated();
         }
     }
 }

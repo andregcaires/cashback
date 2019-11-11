@@ -47,5 +47,41 @@ namespace Cashback.Service.Tests.Application
                 conn.Close();
             }
         }
+
+        [Fact]
+        public void Get_cashbacks_for_today()
+        {
+            var conn = new SqliteConnection("DataSource=:memory:");
+            conn.Open();
+
+            try
+            {
+                var options = new DbContextOptionsBuilder<DatabaseContext>()
+                    .UseSqlite(conn)
+                    .Options;
+
+                using (var context = new DatabaseContext(options))
+                {
+                    context.Database.EnsureCreated();
+                }
+
+                using (var context = new DatabaseContext(options))
+                {
+                    CashbackService service = new CashbackService(new CashbackRepository(context));
+                    service.InitializeCashbackDatabase();
+                }
+
+                using (var context = new DatabaseContext(options))
+                {
+                    CashbackService service = new CashbackService(new CashbackRepository(context));
+                    var forToday = service.GetCashbacksForToday();
+                    Assert.NotEmpty(forToday);
+                }
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
     }
 }

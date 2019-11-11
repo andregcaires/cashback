@@ -1,5 +1,6 @@
 using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using Utilities.Pagination;
@@ -61,8 +62,8 @@ namespace Utilities
         /// <param name="page">Número da página</param>
         /// <param name="pageSize">Tamanho da página</param>
         /// <returns>Objeto do tipo PagedResult paginado</returns>
-        public static PagedResult<T> GetPaged<T>(this IQueryable<T> query,
-                                                 int page, int pageSize) where T : class
+        public static PagedResult<T> GetPaged<T>(this IEnumerable<T> query,
+                                                 int page = 0, int pageSize = 10) where T : class
         {
             var result = new PagedResult<T>();
             result.CurrentPage = page;

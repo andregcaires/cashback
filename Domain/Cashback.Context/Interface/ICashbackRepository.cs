@@ -8,5 +8,7 @@ namespace Cashback.Context.Interface
     public interface ICashbackRepository : IRepository<CashbackByDayOfWeek>
     {
         CashbackByDayOfWeek Get(string musicStyle);
+
+        void Migrate();
     }
 }

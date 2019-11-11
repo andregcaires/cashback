@@ -11,6 +11,12 @@ namespace Cashback.Context.Mapping
         public void Configure(EntityTypeBuilder<Album> builder)
         {
             builder.HasKey(x => x.ID);
+            builder.Property(b => b.Name).IsRequired();
+            builder.Property(b => b.MusicStyle).IsRequired();
+
+            builder.Property(b => b.Price)
+                .HasColumnType("money")
+                .IsRequired();
         }
     }
 }

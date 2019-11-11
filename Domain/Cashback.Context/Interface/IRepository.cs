@@ -18,12 +18,6 @@ namespace Cashback.Context.Interface
         public List<T> GetAllAsList();
 
         /// <summary>
-        /// Recupera todos os itens
-        /// </summary>
-        /// <returns>IQueryable de entidade do tipo T</returns>
-        public IQueryable<T> GetAllAsQueryable();
-
-        /// <summary>
         /// Recupera item do banco pelo seu ID
         /// </summary>
         /// <param name="id">ID do tipo int do objeto</param>
@@ -47,5 +41,6 @@ namespace Cashback.Context.Interface
         /// </summary>
         /// <param name="instance">Objeto do tipo T a ser deletado</param>
         void Delete(T instance);
+
     }
 }

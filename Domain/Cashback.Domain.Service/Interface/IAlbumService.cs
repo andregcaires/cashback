@@ -17,5 +17,20 @@ namespace Cashback.Service.Interface
         /// </summary>
         /// <param name="albumList">Lista de álbuns</param>
         void AddAlbumsToDatabase(List<Album> albumList);
+
+        /// <summary>
+        /// Recupera itens do banco de forma paginada
+        /// </summary>
+        /// <param name="skip">Número da página</param>
+        /// <param name="pageSize">Tamanho da página</param>
+        /// <returns></returns>
+        IList<Album> GetPaged(int skip, int pageSize, string musicStyle = "");
+
+        /// <summary>
+        /// Busca álbum no banco baseado em seu ID
+        /// </summary>
+        /// <param name="id">ID a ser pesquisado</param>
+        /// <returns>Album pesquisado</returns>
+        Album FindById(int id);
     }
 }

@@ -16,6 +16,8 @@ namespace Cashback.Context
         {
             modelBuilder.ApplyConfiguration(new AlbumMapping());
             modelBuilder.ApplyConfiguration(new CashbackMapping());
+            modelBuilder.ApplyConfiguration(new SaleItemMapping());
+            modelBuilder.ApplyConfiguration(new SaleMapping());
 
             base.OnModelCreating(modelBuilder);
         }

@@ -1,4 +1,5 @@
-﻿using Cashback.Context.Commom;
+﻿using System.Linq;
+using Cashback.Context.Commom;
 using Cashback.Context.Interface;
 using Cashback.Domain.Model;
 
@@ -12,5 +13,9 @@ namespace Cashback.Context.Repository
         {
         }
 
+        public IQueryable<Album> GetAllAsQueryable()
+        {
+            return _dBSet.OrderBy(x => x.Name);
+        }
     }
 }
