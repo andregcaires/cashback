@@ -35,6 +35,7 @@ namespace Cashback.Service.Application
 
         public void InitializeCashbackDatabase()
         {
+            _repo.Migrate();
             if (_repo.GetAllAsList().Count == 0)
             {
                 new List<CashbackByDayOfWeek>()

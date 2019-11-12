@@ -1,0 +1,150 @@
+{
+	"info": {
+		"_postman_id": "dcf8e79b-8b66-4e07-986b-697b1db6a96c",
+		"name": "Cashback.Api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Album - Pageable",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [],
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9428/album?musicStyle=pop&page=1&pageSize=10",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9428",
+					"path": [
+						"album"
+					],
+					"query": [
+						{
+							"key": "musicStyle",
+							"value": "pop"
+						},
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "pageSize",
+							"value": "10"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Album - ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9428/album/50",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9428",
+					"path": [
+						"album",
+						"50"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Sale - Post",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "df654a477018b87a096f77aa93f071dea3598a87",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n\t{\n\t\t\"ID\": \"35\",\n\t\t\"Quantity\": \"2\"\n\t},\n\t{\n\t\t\"ID\": \"50\",\n\t\t\"Quantity\": \"1\"\n\t},\n\t{\n\t\t\"ID\": \"52\",\n\t\t\"Quantity\": \"3\"\n\t}\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9428/sale/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9428",
+					"path": [
+						"sale",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Sale - Get All",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9428/sale?page=1&pageSize=10",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9428",
+					"path": [
+						"sale"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "pageSize",
+							"value": "10"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
