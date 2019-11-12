@@ -37,7 +37,9 @@ namespace Cashback.Api.Controllers
             }
             catch (Exception e)
             {
-                return new JsonResult(e.Message);
+                return new JsonResult(e) {
+                    StatusCode = 500
+                };
             }
         }
 
@@ -57,11 +59,21 @@ namespace Cashback.Api.Controllers
         {
             try
             {
-                return new JsonResult(_service.FindById(id));
+                var result = _service.FindById(id);
+                if (result != null)
+                    return new JsonResult(result);
+
+                return new JsonResult($"Not found: {id}")
+                {
+                    StatusCode = 404
+                };
             }
             catch (Exception e)
             {
-                return new JsonResult(e.Message);
+                return new JsonResult(e)
+                {
+                    StatusCode = 500
+                };
             }
         }
 
@@ -74,7 +86,10 @@ namespace Cashback.Api.Controllers
             } 
             catch(Exception e)
             {
-                return new JsonResult(e);
+                return new JsonResult(e)
+                {
+                    StatusCode = 500
+                };
             }
         }
     }
